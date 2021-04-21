@@ -1,18 +1,28 @@
 import random
 
 isAbsent = 0
-WAGE_PER_HOUR = int(20)
-FULL_DAY_HOUR = int(8)
+isFullTime = 1
+isPartTime = 2
+WAGE_PER_HOUR = 20
+FULL_DAY_HOUR = 8
+PART_TIME_HOUR = 4
+
+
+def emp_hr_check(emp_hr):
+    # using switch case statements
+    switcher = {
+        1: FULL_DAY_HOUR,
+        2: PART_TIME_HOUR
+    }
+    return switcher.get(emp_hr, 0)  # returns the employee hour and 0 represents the default value
 
 
 def employee_wage():
     # Using Random To check if Employee is Absent or Present
-    random_check = random.randint(0, 2)
-    if random_check == isAbsent:
-        print("Employee is Absent")
-    else:
-        daily_wage = int(WAGE_PER_HOUR * FULL_DAY_HOUR)
-        print("Employee is Present And Earns Rs.{}".format(daily_wage))
+    random_check = random.randint(0, 3)  # random numbers from 0 to 3 excluding 3
+    emp_hr = emp_hr_check(random_check)  # returned employee working hour
+    daily_wage = emp_hr * WAGE_PER_HOUR  # calculated daily employee wage
+    print("Employee earns a daily wage of Rs.", daily_wage)
 
 
 employee_wage()
